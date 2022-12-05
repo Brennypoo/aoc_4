@@ -9,15 +9,11 @@ def main(filename):
         (two[0] in range(one[0], one[1] + 1) or
          two[1] in range(one[0], one[1] + 1))
 
-    totalcontained = 0
-    totaloverlapping = 0
+    totalcontained, totaloverlapping= 0, 0
     for line in arr:
-        first, second = line[0].split("-"), line[1].split("-")
-        first, second = [int(num) for num in first], [int(num) for num in second]
-        if is_overlapping(first, second):
-            totaloverlapping += 1
-        if is_contained(first, second):
-            totalcontained += 1
+        first, second = [int(num) for num in line[0].split("-")], [int(num) for num in line[1].split("-")]
+        totaloverlapping += 1 if is_overlapping(first,second) else 0
+        totalcontained += 1 if is_contained(first,second) else 0
 
     print(f'{totalcontained} \n'
           f'{totaloverlapping}')
